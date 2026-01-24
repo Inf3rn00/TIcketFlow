@@ -16,8 +16,8 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="py-24 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="max-w-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
               <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary-foreground rounded-full px-3 py-1 mb-8">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-sm font-medium">Streamline your workflow</span>
@@ -48,12 +48,55 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div className="hidden lg:flex justify-center items-center">
+            <div className="flex justify-center items-center">
               <img
                 src="/Scrum board-cuate.png"
                 alt="Team using scrum board for project management"
                 className="w-full max-w-md h-auto object-contain"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Second Section: Image Left, Text Right */}
+      <section className="py-24 border-b border-border bg-card/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Image Side (Left) */}
+            <div className="flex justify-between items-center order-2 lg:order-1">
+              <img
+                src="/Admin-cuate.png"
+                alt="Productivity illustration"
+                className="w-full max-w-md h-auto object-contain"
+              />
+            </div>
+
+            {/* Text Side (Right) */}
+            <div className="order-1 lg:order-2">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-foreground">
+                Save time and focus on <br />
+                <span style={{ color: '#8480BC' }}>what matters most.</span>
+              </h2>
+
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Eliminate the chaos of scattered requests. Centralize your <br /> workflow to reduce administrative overhead and get back <br /> to building great products.
+              </p>
+
+              <div className="space-y-4">
+                {[
+                  "Automated ticket routing",
+                  "Smart prioritization",
+                  "Instant status updates",
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-[#8480BC]/10 flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4" style={{ color: '#8480BC' }} />
+                    </div>
+                    <span className="text-foreground font-medium">{benefit}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
