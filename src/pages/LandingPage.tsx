@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import Footer from "../components/footer";
 import {
-  Ticket,
   CheckCircle,
-  Clock,
-  BarChart3,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
@@ -102,54 +99,55 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-background">
+      {/* How It Works Section */}
+      <section className="py-24 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-semibold mb-4 text-foreground">
-              Everything you need
+              How it works
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Powerful features designed to help your team stay organized,
-              productive, and focused.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Get started with TicketFlow in three simple steps.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden md:block absolute top-[100px] left-[16%] right-[16%] h-0.5 border-t-2 border-dashed border-secondary/40 -z-10" aria-hidden="true" />
+
             {[
               {
-                icon: Ticket,
-                title: "Create Tickets",
-                description: "Quickly create and categorize tickets with detailed information.",
+                title: "Sign Up & Onboard",
+                description: "Create your account in seconds and invite your team members to join your workspace.",
+                image: "/step-1.png"
               },
               {
-                icon: Clock,
-                title: "Track Progress",
-                description: "Monitor ticket status in real-time with clear visual indicators.",
+                title: "Create & Assign",
+                description: "Create detailed tickets for tasks and bugs, then assign them to the right team members.",
+                image: "/step-2.png"
               },
               {
-                icon: CheckCircle,
-                title: "Resolve Faster",
-                description: "Streamlined workflows help your team resolve issues efficiently.",
-              },
-              {
-                icon: BarChart3,
-                title: "Analytics",
-                description: "Get insights into your team's performance with comprehensive dashboards.",
-              },
-            ].map((feature, index) => (
-              <div
-                key={index}
-                className="group p-6 rounded-lg border border-border bg-card hover:border-primary/20 transition-all duration-200"
-              >
-                <div className="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center mb-6 text-primary">
-                  <feature.icon className="w-6 h-6" />
+                title: "Track & Resolve",
+                description: "Monitor progress through the Kanban board and mark tickets as resolved when done.",
+                image: "/step-3.png"
+              }
+            ].map((step, index) => (
+              <div key={index} className="flex flex-col items-center text-center group">
+                <div className="relative mb-6 p-4 bg-card rounded-2xl shadow-sm border border-border group-hover:border-primary/50 transition-all duration-300 w-full max-w-[280px] aspect-square flex items-center justify-center">
+                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold shadow-md z-10">
+                    {index + 1}
+                  </div>
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <h3 className="text-lg font-semibold mb-3 text-foreground">
-                  {feature.title}
+                <h3 className="text-xl font-semibold mb-3 text-foreground">
+                  {step.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
+                <p className="text-muted-foreground leading-relaxed px-4">
+                  {step.description}
                 </p>
               </div>
             ))}
