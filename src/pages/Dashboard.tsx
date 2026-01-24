@@ -8,7 +8,7 @@ import {
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import Footer from "../components/footer";
-import { Ticket, CheckCircle, Clock, LogOut, Plus, ArrowRight, BarChart3, Users } from "lucide-react";
+import { Ticket, CheckCircle, Clock, LogOut, Plus, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface TicketStats {
@@ -40,33 +40,27 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-blue-50/30">
-      {/* Decorative Circles */}
-      <div className="fixed top-20 -left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse pointer-events-none" />
-      <div className="fixed bottom-20 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000 pointer-events-none" />
-      
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="border-b border-slate-200/60 bg-white/80 backdrop-blur-sm shadow-sm relative">
-        <div className="absolute top-0 left-0 w-full h-1 " />
+      <header className="border-b border-border bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-              <Ticket className="w-4 h-4 text-white" aria-hidden="true" />
+            <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
+              <Ticket className="w-4 h-4 text-primary-foreground" aria-hidden="true" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-br from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-semibold text-foreground">
                 TicketFlow
               </h1>
-              <p className="text-sm text-slate-600">
-                Welcome back, <span className="font-semibold text-slate-800">{user?.name}</span>!
+              <p className="text-sm text-muted-foreground">
+                Welcome back, <span className="font-medium text-foreground">{user?.name}</span>
               </p>
             </div>
           </div>
-          <Button 
-            onClick={logout} 
-            variant="outline" 
+          <Button
+            onClick={logout}
+            variant="outline"
             size="sm"
-            className="border-slate-300/80 text-slate-700 hover:bg-slate-100 hover:border-slate-400 transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             <LogOut className="w-4 h-4 mr-2" aria-hidden="true" />
             Logout
@@ -75,161 +69,142 @@ const Dashboard = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 py-12">
+      <main className="flex-1 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-12 text-center">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-br from-slate-800 to-slate-600 bg-clip-text text-transparent">
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-foreground">
               Dashboard Overview
             </h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
-              Track and manage your team's tickets with real-time insights and analytics
+            <p className="text-muted-foreground">
+              Track and manage your team's tickets with real-time insights
             </p>
           </div>
 
           {/* Statistics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {/* Total Tickets */}
-            <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-t-lg" />
-              <CardHeader className="flex flex-row items-center justify-between pb-3">
-                <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Total Tickets
                 </CardTitle>
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Ticket className="w-5 h-5 text-white" aria-hidden="true" />
-                </div>
+                <Ticket className="w-4 h-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-slate-800 mb-1">{stats.total}</div>
-                <p className="text-xs text-slate-500">
+                <div className="text-2xl font-bold text-foreground">{stats.total}</div>
+                <p className="text-xs text-muted-foreground">
                   All time tickets created
                 </p>
-                <div className="w-0 group-hover:w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-3 transition-all duration-300" />
               </CardContent>
             </Card>
 
             {/* Open Tickets */}
-            <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-              <div className="absolute top-0 left-0 w-full h-1 bg-green-500 rounded-t-lg" />
-              <CardHeader className="flex flex-row items-center justify-between pb-3">
-                <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Open Tickets
                 </CardTitle>
-                <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Ticket className="w-5 h-5 text-green-600" aria-hidden="true" />
-                </div>
+                <Ticket className="w-4 h-4 text-primary" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-green-600 mb-1">
+                <div className="text-2xl font-bold text-foreground">
                   {stats.open}
                 </div>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   Awaiting action
                 </p>
-                <div className="w-0 group-hover:w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-3 transition-all duration-300" />
               </CardContent>
             </Card>
 
             {/* In Progress */}
-            <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-              <div className="absolute top-0 left-0 w-full h-1 bg-amber-500 rounded-t-lg" />
-              <CardHeader className="flex flex-row items-center justify-between pb-3">
-                <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   In Progress
                 </CardTitle>
-                <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Clock className="w-5 h-5 text-amber-600" aria-hidden="true" />
-                </div>
+                <Clock className="w-4 h-4 text-secondary-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-amber-600 mb-1">
+                <div className="text-2xl font-bold text-foreground">
                   {stats.inProgress}
                 </div>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   Being worked on
                 </p>
-                <div className="w-0 group-hover:w-12 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full mt-3 transition-all duration-300" />
               </CardContent>
             </Card>
 
             {/* Resolved */}
-            <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gray-500 rounded-t-lg" />
-              <CardHeader className="flex flex-row items-center justify-between pb-3">
-                <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Resolved
                 </CardTitle>
-                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <CheckCircle className="w-5 h-5 text-gray-600" aria-hidden="true" />
-                </div>
+                <CheckCircle className="w-4 h-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-gray-600 mb-1">
+                <div className="text-2xl font-bold text-foreground">
                   {stats.closed}
                 </div>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   Completed tickets
                 </p>
-                <div className="w-0 group-hover:w-12 h-1 bg-gradient-to-r from-gray-500 to-slate-500 rounded-full mt-3 transition-all duration-300" />
               </CardContent>
             </Card>
           </div>
 
           {/* Quick Actions */}
-          <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-t-lg" />
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-slate-800">
-                <BarChart3 className="w-5 h-5 text-blue-600" aria-hidden="true" />
-                Quick Actions
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col sm:flex-row gap-4">
-              <Link to="/tickets" className="flex-1 group">
-                <Button className="w-full h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                  <Ticket className="w-5 h-5 mr-3" aria-hidden="true" />
-                  Manage Tickets
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+          <div className="mb-8">
+            <h3 className="text-lg font-medium text-foreground mb-4">Quick Actions</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Link to="/tickets" className="group">
+                <Button variant="secondary" className="w-full h-auto py-4 flex flex-col items-center justify-center gap-2 border border-border bg-card hover:bg-muted text-foreground p-6 rounded-lg shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <Ticket className="w-5 h-5" />
+                    <span className="font-semibold">Manage Tickets</span>
+                  </div>
+                  <span className="text-sm text-muted-foreground">View and update existing tickets</span>
                 </Button>
               </Link>
-              <Link to="/tickets?action=create" className="flex-1 group">
-                <Button className="w-full h-14 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200 focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                  <Plus className="w-5 h-5 mr-3" aria-hidden="true" />
-                  Create New Ticket
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              <Link to="/tickets?action=create" className="group">
+                <Button className="w-full h-auto py-4 flex flex-col items-center justify-center gap-2 p-6">
+                  <div className="flex items-center gap-2">
+                    <Plus className="w-5 h-5" />
+                    <span className="font-semibold">Create Ticket</span>
+                  </div>
+                  <span className="text-sm text-primary-foreground/80">Add a new ticket to the system</span>
                 </Button>
               </Link>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Additional Stats Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Performance Metrics */}
-            <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-t-lg" />
+            <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-slate-800">
-                  <Users className="w-5 h-5 text-purple-600" aria-hidden="true" />
+                <CardTitle className="flex items-center gap-2 text-foreground">
+                  <Users className="w-5 h-5" />
                   Team Performance
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center p-3 bg-slate-50/50 rounded-lg">
-                    <span className="text-sm font-medium text-slate-700">Resolution Rate</span>
-                    <span className="text-lg font-bold text-green-600">
+                  <div className="flex justify-between items-center py-2 border-b border-border last:border-0">
+                    <span className="text-sm font-medium text-muted-foreground">Resolution Rate</span>
+                    <span className="text-sm font-bold text-foreground">
                       {stats.total > 0 ? Math.round((stats.closed / stats.total) * 100) : 0}%
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-slate-50/50 rounded-lg">
-                    <span className="text-sm font-medium text-slate-700">Active Tickets</span>
-                    <span className="text-lg font-bold text-amber-600">
+                  <div className="flex justify-between items-center py-2 border-b border-border last:border-0">
+                    <span className="text-sm font-medium text-muted-foreground">Active Tickets</span>
+                    <span className="text-sm font-bold text-foreground">
                       {stats.open + stats.inProgress}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-slate-50/50 rounded-lg">
-                    <span className="text-sm font-medium text-slate-700">Efficiency Score</span>
-                    <span className="text-lg font-bold text-blue-600">
+                  <div className="flex justify-between items-center py-2 border-b border-border last:border-0">
+                    <span className="text-sm font-medium text-muted-foreground">Efficiency Score</span>
+                    <span className="text-sm font-bold text-foreground">
                       {stats.total > 0 ? Math.round((stats.closed / (stats.open + stats.inProgress || 1)) * 100) : 0}%
                     </span>
                   </div>
@@ -238,27 +213,26 @@ const Dashboard = () => {
             </Card>
 
             {/* Quick Tips */}
-            <Card className="bg-white/80 backdrop-blur-sm border-slate-200/60 hover:shadow-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-t-lg" />
+            <Card>
               <CardHeader>
-                <CardTitle className="text-slate-800">Quick Tips</CardTitle>
+                <CardTitle className="text-foreground">Quick Tips</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3 text-sm text-slate-600">
+                <div className="space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-1.5 flex-shrink-0" />
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
                     <p>Assign tickets to team members for faster resolution</p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-1.5 flex-shrink-0" />
+                    <div className="w-1.5 h-1.5 bg-secondary rounded-full mt-1.5 flex-shrink-0" />
                     <p>Use priority levels to focus on critical issues</p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1.5 flex-shrink-0" />
+                    <div className="w-1.5 h-1.5 bg-accent rounded-full mt-1.5 flex-shrink-0" />
                     <p>Regularly update ticket status to keep everyone informed</p>
                   </div>
                   <div className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-1.5 flex-shrink-0" />
+                    <div className="w-1.5 h-1.5 bg-muted-foreground rounded-full mt-1.5 flex-shrink-0" />
                     <p>Use filters to quickly find tickets by status or priority</p>
                   </div>
                 </div>
