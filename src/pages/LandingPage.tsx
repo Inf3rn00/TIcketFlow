@@ -16,34 +16,44 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="py-24 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary-foreground rounded-full px-3 py-1 mb-8">
-              <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-medium">Streamline your workflow</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary-foreground rounded-full px-3 py-1 mb-8">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-sm font-medium">Streamline your workflow</span>
+              </div>
+
+              <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-8 text-foreground">
+                Manage tickets with <br />
+                <span className="text-primary">unmatched clarity.</span>
+              </h1>
+
+              <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+                The modern ticket management solution that helps teams track,
+                manage, and resolve issues faster than ever before.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/auth/signup">
+                  <Button size="lg" className="w-full sm:w-auto text-base">
+                    Get Started Free
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link to="/auth/login">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-base">
+                    Sign In
+                  </Button>
+                </Link>
+              </div>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-8 text-foreground">
-              Manage tickets with <br />
-              <span className="text-primary">unmatched clarity.</span>
-            </h1>
-
-            <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-              The modern ticket management solution that helps teams track,
-              manage, and resolve issues faster than ever before.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/auth/signup">
-                <Button size="lg" className="w-full sm:w-auto text-base">
-                  Get Started Free
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link to="/auth/login">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-base">
-                  Sign In
-                </Button>
-              </Link>
+            <div className="hidden lg:flex justify-center items-center">
+              <img
+                src="/Scrum board-cuate.png"
+                alt="Team using scrum board for project management"
+                className="w-full max-w-md h-auto object-contain"
+              />
             </div>
           </div>
         </div>
