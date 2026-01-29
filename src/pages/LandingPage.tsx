@@ -15,7 +15,7 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary-foreground rounded-full px-3 py-1 mb-8">
-                <span className="text-sm font-medium">Streamline your workflow</span>
+                <span className="text-sm font-medium p-2">Streamline your workflow</span>
               </div>
 
               <h1 className="text-5xl md:text-6xl font-semibold tracking-tight mb-8 text-foreground">
